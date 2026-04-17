@@ -5,23 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fortgeschrittenes Netzwerk-Quiz</title>
   <style>
-    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#111827,#1e3c72,#2a5298);color:#222}header{color:white;text-align:center;padding:42px 20px 26px}header h1{margin:0 0 10px;font-size:2.25rem}header p{margin:0;font-size:1.05rem;opacity:.94}main{width:min(1120px,94%);margin:0 auto 40px;background:white;border-radius:20px;padding:26px;box-shadow:0 18px 45px rgba(0,0,0,.28)}.info-box{background:#eef5ff;border-left:6px solid #2a5298;padding:15px;border-radius:12px;margin-bottom:22px;line-height:1.55}.topbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:20px;padding:14px;background:#f7f9fc;border:1px solid #ddd;border-radius:14px}.topbar strong,.question h3{color:#1e3c72}select{padding:10px 12px;border-radius:8px;border:1px solid #bbb;font-size:1rem;background:white}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:20px}.stat{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:13px}.stat small{display:block;color:#64748b;margin-bottom:5px}.stat strong{font-size:1.15rem;color:#0f172a}.question{border:1px solid #d8dee9;border-radius:15px;padding:18px;margin-bottom:18px;background:#fafafa}.question h3{margin-top:0;line-height:1.38}.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.pill{display:inline-block;padding:4px 9px;border-radius:999px;font-size:.82rem;font-weight:bold}.category{background:#e7efff;color:#1e3c72}.points{background:#ecfdf5;color:#166534}.hard{background:#fee2e2;color:#991b1b}.medium{background:#fef3c7;color:#92400e}.easy{background:#dcfce7;color:#166534}label{display:block;margin:10px 0;padding:10px;border-radius:9px;cursor:pointer;background:white;border:1px solid #ddd;transition:.2s;line-height:1.42}label:hover{background:#eef5ff;border-color:#2a5298}input[type=radio]{margin-right:8px}.feedback{margin-top:10px;font-weight:bold;line-height:1.45}.correct{color:#16823a}.wrong{color:#c62828}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px;position:sticky;bottom:0;background:white;padding:12px 0;border-top:1px solid #eee}button{border:none;border-radius:10px;padding:13px 18px;font-size:1rem;cursor:pointer;transition:.2s}#checkBtn,#showAllBtn,#shuffleBtn{background:#1e3c72;color:white}#resetBtn{background:#e0e0e0;color:#222}button:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.2)}#result{margin-top:25px;padding:18px;border-radius:14px;font-size:1.1rem;font-weight:bold;display:none;line-height:1.55}.excellent{background:#d9f7e3;color:#116b31}.ok{background:#fff4cc;color:#8a6500}.bad{background:#ffd9d9;color:#9b1c1c}.progressWrap{height:14px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin-top:12px}.progressBar{height:100%;width:0%;background:#1e3c72;transition:.4s}footer{text-align:center;color:white;padding:20px;font-size:.9rem}@media(max-width:600px){header h1{font-size:1.7rem}main{padding:16px}.buttons{position:static}}
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#111827,#1e3c72,#2a5298);color:#222;min-height:100vh}header{color:white;text-align:center;padding:42px 20px 26px}header h1{margin:0 0 10px;font-size:2.25rem}header p{margin:0;font-size:1.05rem;opacity:.94}main{width:min(900px,94%);margin:0 auto 40px;background:white;border-radius:20px;padding:26px;box-shadow:0 18px 45px rgba(0,0,0,.28)}.info-box{background:#eef5ff;border-left:6px solid #2a5298;padding:15px;border-radius:12px;margin-bottom:22px;line-height:1.55}.topbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:20px;padding:14px;background:#f7f9fc;border:1px solid #ddd;border-radius:14px}.topbar strong,.question h2{color:#1e3c72}select{padding:10px 12px;border-radius:8px;border:1px solid #bbb;font-size:1rem;background:white}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}.stat{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:13px}.stat small{display:block;color:#64748b;margin-bottom:5px}.stat strong{font-size:1.1rem;color:#0f172a}.progressWrap{height:14px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:12px 0 22px}.progressBar{height:100%;width:0%;background:#1e3c72;transition:.35s}.question{border:1px solid #d8dee9;border-radius:18px;padding:22px;background:#fafafa}.question h2{margin:8px 0 18px;line-height:1.38;font-size:1.35rem}.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.pill{display:inline-block;padding:5px 10px;border-radius:999px;font-size:.82rem;font-weight:bold}.category{background:#e7efff;color:#1e3c72}.points{background:#ecfdf5;color:#166534}.hard{background:#fee2e2;color:#991b1b}.medium{background:#fef3c7;color:#92400e}.easy{background:#dcfce7;color:#166534}.answer{display:block;width:100%;text-align:left;margin:11px 0;padding:13px;border-radius:11px;cursor:pointer;background:white;border:1px solid #ddd;transition:.2s;font-size:1rem;line-height:1.42;color:#222}.answer:hover{background:#eef5ff;border-color:#2a5298;transform:none;box-shadow:none}.answer.selected{border-color:#1e3c72;background:#e7efff;font-weight:bold}.answer.correctAnswer{border-color:#16a34a;background:#dcfce7}.answer.wrongAnswer{border-color:#dc2626;background:#fee2e2}.feedback{margin-top:14px;font-weight:bold;line-height:1.45;padding:12px;border-radius:10px;display:none}.feedback.correct{display:block;color:#166534;background:#dcfce7}.feedback.wrong{display:block;color:#991b1b;background:#fee2e2}.navButtons{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;justify-content:space-between}.leftBtns,.rightBtns{display:flex;gap:12px;flex-wrap:wrap}button{border:none;border-radius:10px;padding:13px 18px;font-size:1rem;cursor:pointer;transition:.2s}button:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.2)}button:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}.primary{background:#1e3c72;color:white}.secondary{background:#e5e7eb;color:#222}.danger{background:#991b1b;color:white}#result{margin-top:25px;padding:20px;border-radius:14px;font-size:1.1rem;font-weight:bold;display:none;line-height:1.55}.excellent{background:#d9f7e3;color:#116b31}.ok{background:#fff4cc;color:#8a6500}.bad{background:#ffd9d9;color:#9b1c1c}.summaryList{margin-top:16px;font-weight:normal}.summaryItem{border-top:1px solid rgba(0,0,0,.15);padding:10px 0}.hidden{display:none}footer{text-align:center;color:white;padding:20px;font-size:.9rem}@media(max-width:600px){header h1{font-size:1.7rem}main{padding:16px}.navButtons{display:block}.leftBtns,.rightBtns{margin-top:10px}.leftBtns button,.rightBtns button{width:100%;margin-bottom:8px}.answer{font-size:.96rem}}
   </style>
 </head>
 <body>
-<header><h1>Fortgeschrittenes Netzwerk-Quiz</h1><p>OSI, VPN, Protokolle, Verschlüsselung, RAID, RADIUS, VLANs, NAT, Firewalls & Praxisfälle</p></header>
+<header><h1>Fortgeschrittenes Netzwerk-Quiz</h1><p>Eine Frage nach der anderen: OSI, VPN, RAID, RADIUS, VLANs, Security & Praxis</p></header>
 <main>
-  <div class="info-box"><strong>Anleitung:</strong> Jede Frage hat jetzt einen Schwierigkeitsgrad und Punkte. Leicht = 1 Punkt, Mittel = 2 Punkte, Schwer = 3 Punkte. Die Antwortreihenfolge wird automatisch gemischt. Viele Fragen sind bewusst ähnlich formuliert, damit du wirklich verstehen musst, welche Schicht, welches Protokoll oder welches Konzept gemeint ist.</div>
-  <div class="topbar"><div><strong id="questionCount">Fragen</strong> geladen</div><div><label for="categoryFilter" style="display:inline;border:0;background:transparent;padding:0;margin-right:8px">Thema:</label><select id="categoryFilter"><option value="Alle">Alle Themen</option><option>OSI-Grundlagen</option><option>Geräte</option><option>Protokolle</option><option>VPN</option><option>Verschlüsselung</option><option>Ports & Dienste</option><option>RAID</option><option>RADIUS & AAA</option><option>VLAN & Switching</option><option>Firewall & Security</option><option>Praxisfälle</option></select></div></div>
-  <div class="stats"><div class="stat"><small>Maximale Punkte</small><strong id="maxPoints">0</strong></div><div class="stat"><small>Ausgewählte Kategorie</small><strong id="currentCategory">Alle</strong></div><div class="stat"><small>Bewertung</small><strong id="gradePreview">Noch offen</strong></div></div>
-  <form id="quizForm"></form>
-  <div class="buttons"><button id="checkBtn" type="button">Quiz auswerten</button><button id="resetBtn" type="button">Zurücksetzen</button><button id="showAllBtn" type="button">Alle Fragen anzeigen</button><button id="shuffleBtn" type="button">Antworten neu mischen</button></div>
+  <div class="info-box"><strong>Anleitung:</strong> Du bekommst immer nur eine Frage. Wähle eine Antwort und klicke auf <strong>„Antwort prüfen“</strong>. Danach kannst du zur nächsten Frage gehen. Leicht = 1 Punkt, Mittel = 2 Punkte, Schwer = 3 Punkte.</div>
+
+  <div class="topbar">
+    <div><strong id="questionCount">Fragen</strong> geladen</div>
+    <div>
+      <label for="categoryFilter" style="display:inline;border:0;background:transparent;padding:0;margin-right:8px">Thema:</label>
+      <select id="categoryFilter">
+        <option value="Alle">Alle Themen</option>
+        <option>OSI-Grundlagen</option><option>Geräte</option><option>Protokolle</option><option>VPN</option><option>Verschlüsselung</option><option>Ports & Dienste</option><option>RAID</option><option>RADIUS & AAA</option><option>VLAN & Switching</option><option>Firewall & Security</option><option>Praxisfälle</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><small>Frage</small><strong id="currentQuestionStat">1/1</strong></div>
+    <div class="stat"><small>Punkte aktuell</small><strong id="scoreStat">0</strong></div>
+    <div class="stat"><small>Max. Punkte</small><strong id="maxPoints">0</strong></div>
+    <div class="stat"><small>Kategorie</small><strong id="currentCategory">Alle</strong></div>
+  </div>
+
+  <div class="progressWrap"><div class="progressBar" id="progressBar"></div></div>
+
+  <section class="question" id="questionCard"></section>
+
+  <div class="navButtons">
+    <div class="leftBtns">
+      <button class="secondary" id="prevBtn" type="button">Zurück</button>
+      <button class="secondary" id="resetBtn" type="button">Neu starten</button>
+    </div>
+    <div class="rightBtns">
+      <button class="primary" id="checkBtn" type="button">Antwort prüfen</button>
+      <button class="primary" id="nextBtn" type="button">Weiter</button>
+      <button class="danger hidden" id="finishBtn" type="button">Auswertung</button>
+    </div>
+  </div>
+
   <div id="result"></div>
 </main>
 <footer>Fortgeschrittenes Lernquiz für Netzwerktechnik</footer>
 <script>
 const rawQuestions = [
-// OSI
 ['OSI-Grundlagen','Welche Aussage trennt Schicht 2 und Schicht 3 am besten?',['Schicht 2 arbeitet lokal mit MAC-Adressen, Schicht 3 netzübergreifend mit IP-Adressen','Schicht 2 nutzt Ports, Schicht 3 nutzt Zertifikate','Schicht 2 ist nur für DNS zuständig, Schicht 3 nur für HTTP','Schicht 2 verschlüsselt grundsätzlich, Schicht 3 komprimiert grundsätzlich'],0,3,'Schicht 2 ist lokal im Link/LAN, Schicht 3 ermöglicht Routing zwischen Netzen.'],
 ['OSI-Grundlagen','Ein Paket verlässt das lokale Netz über ein Default Gateway. Welche OSI-Schicht ist dafür entscheidend?',['Schicht 2','Schicht 3','Schicht 5','Schicht 7'],1,2,'Das Default Gateway ist eine Routing-Funktion auf Schicht 3.'],
 ['OSI-Grundlagen','Welche Kombination ist fachlich am passendsten?',['Frame = Schicht 2, Paket = Schicht 3, Segment = Schicht 4','Frame = Schicht 4, Paket = Schicht 2, Segment = Schicht 1','Frame = Schicht 7, Paket = Schicht 6, Segment = Schicht 5','Frame = DNS, Paket = DHCP, Segment = HTTP'],0,3,'Frames, Pakete und Segmente werden typischerweise diesen Schichten zugeordnet.'],
@@ -32,8 +62,6 @@ const rawQuestions = [
 ['OSI-Grundlagen','Welche Schicht ist bei MTU-Problemen und Fragmentierung besonders relevant?',['Schicht 1','Schicht 2/3','Schicht 6','Schicht 7'],1,3,'MTU hängt mit Link-Layer-Größe und IP-Pakettransport zusammen.'],
 ['OSI-Grundlagen','Welche Aussage ist am genauesten?',['TCP garantiert nicht, dass eine Anwendung korrekt verarbeitet, sondern nur zuverlässige Übertragung zwischen Endpunkten','TCP verschlüsselt immer automatisch','TCP arbeitet mit MAC-Adressen','TCP ersetzt DNS'],0,3,'TCP sorgt für Transportzuverlässigkeit, nicht für korrekte App-Logik.'],
 ['OSI-Grundlagen','Welche OSI-Schicht ist bei einem defekten Glasfaserkabel zuerst betroffen?',['Schicht 1','Schicht 2','Schicht 3','Schicht 7'],0,1,'Ein Kabelproblem betrifft zuerst die physische Schicht.'],
-
-// Geräte
 ['Geräte','Ein Layer-3-Switch unterscheidet sich von einem reinen Layer-2-Switch besonders durch:',['Routing-Funktionen zwischen Netzen/VLANs','fehlende MAC-Tabelle','ausschließliche Arbeit auf Schicht 1','automatische TLS-Entschlüsselung'],0,2,'Layer-3-Switches können routen.'],
 ['Geräte','Warum leitet ein Switch unbekannte Unicast-Frames an mehrere Ports weiter?',['Die Ziel-MAC ist noch nicht in der MAC-Tabelle gelernt','Der Switch arbeitet dann als Router','TCP verlangt Flooding','DNS konnte nicht antworten'],0,3,'Unknown Unicast Flooding passiert, wenn die Ziel-MAC unbekannt ist.'],
 ['Geräte','Welches Gerät trennt Broadcast-Domänen am zuverlässigsten?',['Hub','Router oder Layer-3-Switch','Repeater','Patchpanel'],1,2,'Routing trennt Broadcast-Domänen.'],
@@ -44,8 +72,6 @@ const rawQuestions = [
 ['Geräte','Ein Load Balancer verteilt hauptsächlich:',['Client-Anfragen auf mehrere Server','MAC-Adressen auf VLANs','RAID-Parität auf Festplatten','DHCP-Leases auf Ports'],0,2,'Load Balancer verteilen Last auf Server.'],
 ['Geräte','Was ist ein IDS im Vergleich zu einem IPS?',['IDS erkennt und meldet, IPS kann aktiv blockieren','IDS routet, IPS switcht','IDS verschlüsselt, IPS entschlüsselt','IDS ist RAID 1, IPS ist RAID 5'],0,3,'IDS ist passiver, IPS kann eingreifen.'],
 ['Geräte','Ein WAF schützt besonders:',['Webanwendungen auf Anwendungsebene','SATA-Festplatten vor Ausfall','Layer-1-Kabel vor Störungen','DHCP-Leases vor Ablauf'],0,3,'Eine Web Application Firewall prüft HTTP/HTTPS-Anfragen.'],
-
-// Protokolle
 ['Protokolle','Welche Aussage zu DNS über UDP und TCP ist korrekt?',['Normale Anfragen oft UDP 53, größere/Zone-Transfers auch TCP 53','DNS nutzt nur TCP 443','DNS nutzt ausschließlich ICMP','DNS arbeitet nur mit MAC-Adressen'],0,3,'DNS nutzt häufig UDP 53, aber TCP ist ebenfalls wichtig.'],
 ['Protokolle','Was ist der Zweck von TTL in DNS-Einträgen?',['Cache-Gültigkeitsdauer festlegen','TLS-Schlüssel verlängern','MAC-Adressen verstecken','TCP-Verbindungen öffnen'],0,2,'TTL bestimmt, wie lange Resolver Einträge cachen dürfen.'],
 ['Protokolle','Welche Aussage zu TCP Three-Way Handshake stimmt?',['SYN, SYN-ACK, ACK bauen die Verbindung auf','ARP, DNS, DHCP bauen die Verbindung auf','FIN, RST, ICMP bauen jede Verbindung auf','TLS ersetzt den TCP-Handshake vollständig'],0,2,'TCP nutzt SYN, SYN-ACK und ACK zum Verbindungsaufbau.'],
@@ -56,8 +82,6 @@ const rawQuestions = [
 ['Protokolle','Welche Aussage zu SNMPv3 ist richtig?',['Es kann Authentifizierung und Verschlüsselung bieten','Es ist immer unverschlüsselt wie SNMPv1','Es ersetzt TCP','Es dient nur Webseiten'],0,3,'SNMPv3 ist sicherer als ältere Varianten.'],
 ['Protokolle','Was ist mDNS typischerweise?',['Namensauflösung im lokalen Netz ohne klassischen DNS-Server','Verschlüsselung für VPNs','RAID-Prüfsumme','RADIUS-Accounting'],0,3,'mDNS wird für lokale Namensauflösung genutzt.'],
 ['Protokolle','Welche Aussage zu NTP ist sicherheitsrelevant?',['Falsche Zeit kann Zertifikatsprüfung und Logs beeinflussen','NTP vergibt VLAN-IDs','NTP ersetzt DNSSEC','NTP ist ein RAID-Modus'],0,3,'Zeitabweichungen können Zertifikate, Logs und Authentifizierung stören.'],
-
-// VPN
 ['VPN','Welche Kombination ist bei IPsec besonders typisch?',['IKE für Schlüsselaushandlung, ESP für geschützte Nutzdaten','DHCP für Tunnel, ARP für Verschlüsselung','SMTP für Schlüssel, POP3 für Tunnel','RAID für Authentifizierung, DNS für Parität'],0,3,'IKE und ESP sind zentrale Bestandteile vieler IPsec-Setups.'],
 ['VPN','Was ist ein Nachteil von Split Tunneling?',['Nicht jeder Verkehr wird über Sicherheitskontrollen des VPN geleitet','Alle Daten werden doppelt verschlüsselt','Es macht DNS unmöglich','Es deaktiviert TCP'],0,3,'Split Tunneling kann Sicherheits- und Kontrolllücken erzeugen.'],
 ['VPN','Was kann bei VPN-Verbindungen durch zu kleine MTU entstehen?',['Fragmentierung oder Verbindungsprobleme','RAID-Rebuild','MAC-Learning-Schleife','DHCP-Starvation'],0,3,'VPN-Overhead reduziert oft die nutzbare MTU.'],
@@ -68,8 +92,6 @@ const rawQuestions = [
 ['VPN','Was ist ein Clientless SSL VPN typischerweise?',['Zugriff über Browser/Webportal auf ausgewählte Ressourcen','VPN ohne Authentifizierung','IPsec nur für Router','RAID über HTTPS'],0,3,'Clientless VPNs bieten oft Webportalzugriff.'],
 ['VPN','Warum können VPN und NAT Probleme machen?',['Einige Protokolle reagieren empfindlich auf Adress-/Portänderungen und benötigen NAT-Traversal','NAT löscht immer TLS-Zertifikate','VPN verhindert jede IP-Kommunikation','NAT arbeitet ausschließlich auf Schicht 1'],0,3,'NAT-Traversal ist bei bestimmten VPN-Arten wichtig.'],
 ['VPN','Was ist bei Always-On-VPN das Ziel?',['VPN-Verbindung automatisch und dauerhaft erzwingen','VPN nur manuell bei Bedarf starten','DHCP deaktivieren','RAID-Rebuild beschleunigen'],0,2,'Always-On soll Schutz und Richtlinien dauerhaft durchsetzen.'],
-
-// Verschlüsselung
 ['Verschlüsselung','Welche Aussage zu Hashing ist korrekt?',['Hashing ist nicht zur Entschlüsselung gedacht','Hashing nutzt immer öffentliche Schlüssel','Hashing ist identisch mit Kompression','Hashing ist ein VPN-Tunnel'],0,2,'Hashfunktionen sind Einwegfunktionen.'],
 ['Verschlüsselung','Warum wird bei TLS oft asymmetrische und symmetrische Kryptografie kombiniert?',['Asymmetrisch für Aushandlung/Authentisierung, symmetrisch für schnelle Datenübertragung','Symmetrisch ist nur für DNS, asymmetrisch nur für RAID','Asymmetrisch ist schneller für Massendaten','Symmetrisch benötigt nie Schlüssel'],0,3,'TLS kombiniert Stärken beider Verfahren.'],
 ['Verschlüsselung','Was schützt eine digitale Signatur primär?',['Integrität und Authentizität','Verfügbarkeit bei Stromausfall','RAID-Parität','DHCP-Lease-Zeit'],0,2,'Signaturen bestätigen Herkunft und Unverändertheit.'],
@@ -80,8 +102,6 @@ const rawQuestions = [
 ['Verschlüsselung','Was ist ein Salt beim Passwort-Hashing?',['Zufälliger Zusatz gegen vorberechnete Tabellen','Öffentlicher DNS-Schlüssel','VPN-Tunnelname','RAID-Paritätsblock'],0,3,'Salts erschweren Rainbow-Table-Angriffe.'],
 ['Verschlüsselung','Was ist ein HMAC?',['Hash-basierter Nachrichtenauthentifizierungscode mit geheimem Schlüssel','Unverschlüsselter DNS-Record','RAID-Controller-Modus','Layer-2-Broadcast'],0,3,'HMAC prüft Integrität und Authentizität mit Schlüssel.'],
 ['Verschlüsselung','Welche Aussage zu Verschlüsselung ist richtig?',['Sie schützt Vertraulichkeit, aber nicht automatisch Verfügbarkeit','Sie ersetzt Firewalls vollständig','Sie verhindert alle Phishing-Angriffe','Sie macht Backups unnötig'],0,2,'Verschlüsselung ist wichtig, aber nicht allumfassend.'],
-
-// Ports
 ['Ports & Dienste','Welcher Port gehört typischerweise zu LDAPS?',['389','443','636','1812'],2,3,'LDAPS nutzt häufig TCP 636.'],
 ['Ports & Dienste','Welcher Port gehört typischerweise zu LDAP ohne TLS?',['389','445','993','1813'],0,2,'LDAP nutzt häufig TCP/UDP 389.'],
 ['Ports & Dienste','Welche Ports sind typisch für RADIUS Authentication und Accounting?',['1812 und 1813','80 und 443','67 und 68','20 und 21'],0,3,'RADIUS nutzt häufig UDP 1812 für Auth und 1813 für Accounting.'],
@@ -92,8 +112,6 @@ const rawQuestions = [
 ['Ports & Dienste','Welche Ports sind typisch für IPsec/IKE und NAT-T?',['UDP 500 und UDP 4500','TCP 80 und 443','UDP 67 und 68','TCP 110 und 143'],0,3,'IKE nutzt UDP 500, NAT-T häufig UDP 4500.'],
 ['Ports & Dienste','Welcher Port gehört typischerweise zu Syslog?',['514','53','995','3306'],0,3,'Syslog nutzt häufig Port 514.'],
 ['Ports & Dienste','Welcher Port gehört typischerweise zu MySQL?',['1433','1521','3306','5432'],2,2,'MySQL nutzt häufig TCP 3306.'],
-
-// RAID
 ['RAID','Welches RAID bietet Spiegelung mit zwei Festplatten?',['RAID 0','RAID 1','RAID 5','RAID 6'],1,1,'RAID 1 spiegelt Daten.'],
 ['RAID','Welches RAID bietet Striping ohne Redundanz?',['RAID 0','RAID 1','RAID 5','RAID 10'],0,1,'RAID 0 verteilt Daten, schützt aber nicht vor Ausfall.'],
 ['RAID','Welches RAID benötigt mindestens drei Festplatten und nutzt verteilte Parität?',['RAID 1','RAID 5','RAID 6','RAID 10'],1,2,'RAID 5 nutzt verteilte Parität und braucht mindestens drei Platten.'],
@@ -106,8 +124,6 @@ const rawQuestions = [
 ['RAID','Welche Kapazität ergibt RAID 5 mit 4 gleich großen 2-TB-Platten ungefähr?',['2 TB','4 TB','6 TB','8 TB'],2,3,'RAID 5 verliert die Kapazität einer Platte für Parität.'],
 ['RAID','Welche Kapazität ergibt RAID 1 mit zwei 4-TB-Platten ungefähr?',['4 TB','8 TB','2 TB','12 TB'],0,2,'Bei RAID 1 steht die Kapazität einer Platte zur Verfügung.'],
 ['RAID','Welche Eigenschaft hat RAID 0?',['Hohe Performance, aber keine Fehlertoleranz','Hohe Fehlertoleranz durch doppelte Parität','Spiegelung jeder Platte','Automatisches Offsite-Backup'],0,2,'RAID 0 ist schnell, aber riskant.'],
-
-// RADIUS
 ['RADIUS & AAA','Wofür steht AAA im Netzwerk-Sicherheitskontext?',['Authentication, Authorization, Accounting','ARP, Addressing, Auditing','Access, Address, Algorithm','Availability, Asymmetry, AES'],0,2,'AAA beschreibt Authentifizierung, Autorisierung und Protokollierung/Abrechnung.'],
 ['RADIUS & AAA','Welche Rolle hat ein RADIUS-Server typischerweise?',['Zentrale Authentifizierung für Netzwerkzugänge','RAID-Parität berechnen','DNS-Zonen signieren','Switch-MAC-Tabelle ersetzen'],0,2,'RADIUS zentralisiert Zugangskontrolle.'],
 ['RADIUS & AAA','Welche Ports werden häufig für RADIUS verwendet?',['UDP 1812/1813','TCP 80/443','UDP 67/68','TCP 445/3389'],0,2,'1812 ist Authentication, 1813 Accounting.'],
@@ -120,8 +136,6 @@ const rawQuestions = [
 ['RADIUS & AAA','Welche Methode gilt bei WLAN-Enterprise als besonders stark?',['EAP-TLS mit Client-Zertifikaten','Offenes WLAN ohne Authentifizierung','Gemeinsames WPA2-Personal-Passwort für alle','Telnet-Login am Access Point'],0,3,'EAP-TLS mit Zertifikaten ist stark, wenn sauber verwaltet.'],
 ['RADIUS & AAA','Was kann RADIUS nach erfolgreicher Authentifizierung zurückgeben?',['Attribute wie VLAN-Zuweisung oder ACLs','RAID-Paritätsblöcke','DNS-Root-Zonen','TCP-RST für alle Ports'],0,3,'RADIUS kann Autorisierungsattribute liefern.'],
 ['RADIUS & AAA','Warum ist zentrale Authentifizierung vorteilhaft?',['Benutzer- und Zugriffsregeln lassen sich zentral verwalten','Alle Geräte brauchen keine Updates mehr','Verschlüsselung wird unnötig','RAID wird schneller'],0,2,'Zentrale Verwaltung erleichtert Sicherheit und Administration.'],
-
-// VLAN/Switching
 ['VLAN & Switching','Was ist ein VLAN?',['Logische Trennung eines Layer-2-Netzes','Physisches Kabelbündel','VPN-Tunnel mit TLS','RAID-Verbund'],0,2,'VLANs trennen Layer-2-Broadcast-Domänen logisch.'],
 ['VLAN & Switching','Was macht ein 802.1Q-Trunk?',['Transportiert mehrere VLANs über eine Verbindung','Vergibt DHCP-Adressen','Verschlüsselt automatisch alle Frames','Berechnet RAID-Parität'],0,3,'802.1Q taggt Frames für VLANs.'],
 ['VLAN & Switching','Was ist ein Access Port?',['Port für ein einzelnes VLAN ohne Tag zum Endgerät','Port für alle VLANs immer getaggt','Port nur für Routingtabellen','Port für RADIUS Accounting'],0,2,'Access Ports gehören meist zu einem VLAN.'],
@@ -132,8 +146,6 @@ const rawQuestions = [
 ['VLAN & Switching','Was ist eine MAC Address Table?',['Zuordnung von MAC-Adressen zu Switch-Ports','Liste von DNS-Servern','RAID-Paritätstabelle','VPN-Schlüsselspeicher'],0,2,'Switches lernen MACs pro Port.'],
 ['VLAN & Switching','Was ist VLAN Hopping?',['Angriff, um unerlaubt Verkehr anderer VLANs zu erreichen','RAID-Level-Wechsel','DNS-Cache-Angriff','VPN-Rekeying'],0,3,'VLAN Hopping zielt auf VLAN-Trennung.'],
 ['VLAN & Switching','Welche Schutzmaßnahme passt gegen MAC-Flooding?',['Port Security','DNSSEC','RAID 6','NTP-Peering'],0,3,'Port Security kann MAC-Anzahl begrenzen.'],
-
-// Firewall/Security
 ['Firewall & Security','Welche Regel ist nach dem Least-Privilege-Prinzip besser?',['Nur benötigte Ports/Quellen erlauben','Alles erlauben und später schauen','Nur ausgehenden Traffic blockieren','Firewall im Bridge-Modus deaktivieren'],0,2,'Least Privilege erlaubt nur Notwendiges.'],
 ['Firewall & Security','Was ist Stateful Inspection?',['Firewall berücksichtigt Verbindungszustände','Firewall prüft nur Stromspannung','Firewall nutzt nur DNS-Namen','Firewall macht RAID-Rebuild'],0,2,'Stateful Firewalls kennen Verbindungszustände.'],
 ['Firewall & Security','Was ist eine DMZ im Netzwerk?',['Separates Segment für öffentlich erreichbare Dienste','RAID-Ersatzplatte','DNS-TTL-Wert','VPN-Clientmodus'],0,2,'DMZ trennt öffentliche Dienste vom internen Netz.'],
@@ -144,8 +156,6 @@ const rawQuestions = [
 ['Firewall & Security','Was ist Brute Force?',['Viele Passwortversuche systematisch ausprobieren','DNS-Zone signieren','RAID-Verbund spiegeln','VLAN taggen'],0,2,'Brute Force probiert viele Kandidaten.'],
 ['Firewall & Security','Was hilft gegen Credential Stuffing?',['MFA, Passwort-Hygiene und Erkennung ungewöhnlicher Logins','RAID 0','Offenes WLAN','Deaktivierte Logs'],0,3,'Credential Stuffing nutzt geleakte Passwörter.'],
 ['Firewall & Security','Was ist ein SIEM?',['System zum Sammeln, Korrelieren und Analysieren von Sicherheitsereignissen','Switch für VLAN-Trunks','RAID-Level','VPN-Protokoll'],0,3,'SIEM unterstützt Sicherheitsüberwachung.'],
-
-// Praxis
 ['Praxisfälle','Ein Client bekommt IP 169.254.x.x. Was ist wahrscheinlich?',['DHCP hat nicht funktioniert, APIPA wurde genutzt','DNSSEC ist aktiv','RAID 5 ist degraded','HTTPS ist abgelaufen'],0,3,'169.254.x.x weist oft auf fehlgeschlagene DHCP-Vergabe hin.'],
 ['Praxisfälle','Ein Nutzer kann IPs pingen, aber keine Namen auflösen. Was prüfst du zuerst?',['DNS-Server/Resolver-Konfiguration','RAID-Controller','VLAN Native Tagging als Einziges','RADIUS Accounting'],0,2,'Namensprobleme deuten auf DNS hin.'],
 ['Praxisfälle','Ein PC erreicht Geräte im gleichen VLAN, aber keine anderen Netze. Was ist wahrscheinlich?',['Default Gateway oder Routingproblem','MAC-Adresse ist immer falsch','DNS ist zwingend kaputt','RAID-Rebuild läuft'],0,3,'Für andere Netze braucht man Gateway/Routing.'],
@@ -157,45 +167,42 @@ const rawQuestions = [
 ['Praxisfälle','Ein Admin möchte Gast-WLAN vom internen LAN trennen. Was passt am besten?',['Eigenes VLAN mit Firewall-Regeln','Alle Gäste ins gleiche Admin-VLAN','RAID 10','SNMPv1 aktivieren'],0,2,'Gastnetz sollte segmentiert und gefiltert sein.'],
 ['Praxisfälle','Ein Login-System soll zentral Benutzer prüfen und Zugriffe protokollieren. Was passt?',['RADIUS/AAA','RAID 6','ARP','STP'],0,2,'RADIUS/AAA passt zu zentraler Authentifizierung und Accounting.']
 ];
-let questions=[];
+
+let questions=[], activeQuestions=[], currentIndex=0, answers=[], checked=[];
 function shuffle(array){for(let i=array.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[array[i],array[j]]=[array[j],array[i]]}return array}
 function prepareQuestions(){questions=rawQuestions.map(([cat,q,a,c,points,e])=>{const mixed=shuffle(a.map((text,idx)=>({text,correct:idx===c})));return{cat,q,a:mixed.map(x=>x.text),c:mixed.findIndex(x=>x.correct),points,e}})}
-const form=document.getElementById('quizForm'),result=document.getElementById('result'),categoryFilter=document.getElementById('categoryFilter'),questionCount=document.getElementById('questionCount'),maxPointsEl=document.getElementById('maxPoints'),currentCategory=document.getElementById('currentCategory'),gradePreview=document.getElementById('gradePreview');
+const card=document.getElementById('questionCard'),result=document.getElementById('result'),categoryFilter=document.getElementById('categoryFilter'),questionCount=document.getElementById('questionCount'),maxPointsEl=document.getElementById('maxPoints'),currentCategory=document.getElementById('currentCategory'),scoreStat=document.getElementById('scoreStat'),currentQuestionStat=document.getElementById('currentQuestionStat'),progressBar=document.getElementById('progressBar'),prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn'),checkBtn=document.getElementById('checkBtn'),finishBtn=document.getElementById('finishBtn');
 function difficulty(points){return points===1?'Leicht':points===2?'Mittel':'Schwer'}
 function difficultyClass(points){return points===1?'easy':points===2?'medium':'hard'}
-function filteredQuestions(category='Alle'){return questions.map((item,originalIndex)=>({...item,originalIndex})).filter(item=>category==='Alle'||item.cat===category)}
-function renderQuestions(category='Alle'){
-  form.innerHTML=''; const filtered=filteredQuestions(category); const max=filtered.reduce((s,x)=>s+x.points,0);
-  questionCount.textContent=`${filtered.length} Fragen`; maxPointsEl.textContent=max; currentCategory.textContent=category; gradePreview.textContent='Noch offen';
-  filtered.forEach((item,visibleIndex)=>{const section=document.createElement('section');section.className='question';section.dataset.index=item.originalIndex;
-    const answersHtml=item.a.map((answer,answerIndex)=>`<label><input type="radio" name="q${item.originalIndex}" value="${answerIndex}">${String.fromCharCode(65+answerIndex)}) ${answer}</label>`).join('');
-    section.innerHTML=`<div class="meta"><span class="pill category">${item.cat}</span><span class="pill ${difficultyClass(item.points)}">${difficulty(item.points)}</span><span class="pill points">${item.points} Punkt${item.points>1?'e':''}</span></div><h3>${visibleIndex+1}. ${item.q}</h3>${answersHtml}<div class="feedback" id="f${item.originalIndex}"></div>`;
-    form.appendChild(section);
-  });
-  result.style.display='none';result.textContent='';result.className='';
+function setCategory(category='Alle'){activeQuestions=questions.map((item,originalIndex)=>({...item,originalIndex})).filter(item=>category==='Alle'||item.cat===category);currentIndex=0;answers=Array(activeQuestions.length).fill(null);checked=Array(activeQuestions.length).fill(false);result.style.display='none';render()}
+function currentScore(){return activeQuestions.reduce((sum,q,i)=>sum+(checked[i]&&answers[i]===q.c?q.points:0),0)}
+function maxScore(){return activeQuestions.reduce((sum,q)=>sum+q.points,0)}
+function render(){
+  if(activeQuestions.length===0){card.innerHTML='<h2>Keine Fragen in dieser Kategorie.</h2>';return}
+  const q=activeQuestions[currentIndex];
+  questionCount.textContent=`${activeQuestions.length} Fragen`;maxPointsEl.textContent=maxScore();currentCategory.textContent=categoryFilter.value;scoreStat.textContent=currentScore();currentQuestionStat.textContent=`${currentIndex+1}/${activeQuestions.length}`;progressBar.style.width=`${Math.round(((currentIndex+1)/activeQuestions.length)*100)}%`;
+  const answerHtml=q.a.map((answer,i)=>{let cls='answer';if(answers[currentIndex]===i)cls+=' selected';if(checked[currentIndex]&&i===q.c)cls+=' correctAnswer';if(checked[currentIndex]&&answers[currentIndex]===i&&i!==q.c)cls+=' wrongAnswer';return `<button type="button" class="${cls}" data-answer="${i}">${String.fromCharCode(65+i)}) ${answer}</button>`}).join('');
+  const feedbackClass=checked[currentIndex]?(answers[currentIndex]===q.c?'feedback correct':'feedback wrong'):'feedback';
+  const feedbackText=!checked[currentIndex]?'':answers[currentIndex]===q.c?`Richtig! +${q.points} Punkt${q.points>1?'e':''}. ${q.e}`:`Falsch. Richtig ist ${String.fromCharCode(65+q.c)}) ${q.a[q.c]}. ${q.e}`;
+  card.innerHTML=`<div class="meta"><span class="pill category">${q.cat}</span><span class="pill ${difficultyClass(q.points)}">${difficulty(q.points)}</span><span class="pill points">${q.points} Punkt${q.points>1?'e':''}</span></div><h2>${q.q}</h2>${answerHtml}<div class="${feedbackClass}">${feedbackText}</div>`;
+  document.querySelectorAll('.answer').forEach(btn=>btn.addEventListener('click',()=>{if(checked[currentIndex])return;answers[currentIndex]=Number(btn.dataset.answer);render()}));
+  prevBtn.disabled=currentIndex===0;nextBtn.disabled=currentIndex===activeQuestions.length-1;checkBtn.disabled=checked[currentIndex]||answers[currentIndex]===null;
+  finishBtn.classList.toggle('hidden',currentIndex!==activeQuestions.length-1);
 }
-function checkQuiz(){
-  const visible=[...document.querySelectorAll('.question')];let score=0,max=0,answered=0,correctCount=0;
-  visible.forEach(section=>{const index=Number(section.dataset.index),item=questions[index],selected=document.querySelector(`input[name="q${index}"]:checked`),feedback=document.getElementById(`f${index}`);max+=item.points;
-    if(!selected){feedback.textContent='Keine Antwort ausgewählt.';feedback.className='feedback wrong';return}
-    answered++;const selectedIndex=Number(selected.value);
-    if(selectedIndex===item.c){score+=item.points;correctCount++;feedback.textContent=`Richtig! +${item.points} Punkt${item.points>1?'e':''}. ${item.e}`;feedback.className='feedback correct'}
-    else{feedback.textContent=`Falsch. 0 Punkte. Richtig ist ${String.fromCharCode(65+item.c)}) ${item.a[item.c]}. ${item.e}`;feedback.className='feedback wrong'}
-  });
-  const percentage=max===0?0:Math.round(score/max*100);let grade='';
-  if(percentage>=90)grade='Note 1 / Expert';else if(percentage>=80)grade='Note 2 / Sehr gut';else if(percentage>=65)grade='Note 3 / Solide';else if(percentage>=50)grade='Note 4 / Grundlagen ok';else grade='Nicht bestanden / wiederholen';
-  gradePreview.textContent=grade; result.style.display='block';result.className='';
-  if(percentage>=80)result.classList.add('excellent');else if(percentage>=50)result.classList.add('ok');else result.classList.add('bad');
-  result.innerHTML=`Punkte: ${score} von ${max} (${percentage}%).<br>Richtige Fragen: ${correctCount} von ${visible.length}. Beantwortet: ${answered}/${visible.length}.<br>Bewertung: ${grade}<div class="progressWrap"><div class="progressBar" style="width:${percentage}%"></div></div>`;
+function checkAnswer(){if(answers[currentIndex]===null)return;checked[currentIndex]=true;render()}
+function nextQuestion(){if(currentIndex<activeQuestions.length-1){currentIndex++;result.style.display='none';render();window.scrollTo({top:0,behavior:'smooth'})}}
+function prevQuestion(){if(currentIndex>0){currentIndex--;result.style.display='none';render();window.scrollTo({top:0,behavior:'smooth'})}}
+function finishQuiz(){
+  const score=currentScore(), max=maxScore(), percent=max===0?0:Math.round(score/max*100), answered=answers.filter(x=>x!==null).length, correct=activeQuestions.filter((q,i)=>checked[i]&&answers[i]===q.c).length;
+  let grade=percent>=90?'Note 1 / Expert':percent>=80?'Note 2 / Sehr gut':percent>=65?'Note 3 / Solide':percent>=50?'Note 4 / Grundlagen ok':'Nicht bestanden / wiederholen';
+  result.style.display='block';result.className=percent>=80?'excellent':percent>=50?'ok':'bad';
+  const missed=activeQuestions.map((q,i)=>({q,i})).filter(x=>answers[x.i]!==x.q.c).slice(0,10).map(x=>`<div class="summaryItem"><strong>${x.i+1}. ${x.q.q}</strong><br>Richtig: ${x.q.a[x.q.c]}</div>`).join('');
+  result.innerHTML=`Punkte: ${score} von ${max} (${percent}%).<br>Richtige Fragen: ${correct} von ${activeQuestions.length}. Beantwortet: ${answered}/${activeQuestions.length}.<br>Bewertung: ${grade}<div class="progressWrap"><div class="progressBar" style="width:${percent}%"></div></div>${missed?`<div class="summaryList"><strong>Wiederholen:</strong>${missed}</div>`:''}`;
   result.scrollIntoView({behavior:'smooth'});
 }
-function resetQuiz(){form.reset();document.querySelectorAll('.feedback').forEach(x=>{x.textContent='';x.className='feedback'});result.style.display='none';result.textContent='';result.className='';gradePreview.textContent='Noch offen';window.scrollTo({top:0,behavior:'smooth'})}
-document.getElementById('checkBtn').addEventListener('click',checkQuiz);
-document.getElementById('resetBtn').addEventListener('click',resetQuiz);
-document.getElementById('showAllBtn').addEventListener('click',()=>{categoryFilter.value='Alle';renderQuestions('Alle');window.scrollTo({top:0,behavior:'smooth'})});
-document.getElementById('shuffleBtn').addEventListener('click',()=>{prepareQuestions();renderQuestions(categoryFilter.value);window.scrollTo({top:0,behavior:'smooth'})});
-categoryFilter.addEventListener('change',()=>renderQuestions(categoryFilter.value));
-prepareQuestions();renderQuestions();
+function restart(){setCategory(categoryFilter.value);window.scrollTo({top:0,behavior:'smooth'})}
+checkBtn.addEventListener('click',checkAnswer);nextBtn.addEventListener('click',nextQuestion);prevBtn.addEventListener('click',prevQuestion);finishBtn.addEventListener('click',finishQuiz);document.getElementById('resetBtn').addEventListener('click',restart);categoryFilter.addEventListener('change',()=>setCategory(categoryFilter.value));
+prepareQuestions();setCategory('Alle');
 </script>
 </body>
 </html>
